@@ -1,0 +1,65 @@
+[project]
+name = "test_case"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "nazar", email = "baloyan99@list.ru"},
+]
+dependencies = [
+    "fastapi>=0.115.12",
+    "pydantic-settings>=2.9.1",
+    "uvicorn>=0.34.2",
+    "sqlalchemy==2.0.34",
+    "asyncpg==0.29.0",
+    "alembic>=1.15.2",
+    "psycopg2-binary==2.9.9",
+    "passlib>=1.7.4",
+    "pydantic[email]>=2.11.4",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.9",
+    "jose>=1.0.0",
+    "websockets>=15.0.1",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "ruff>=0.5.6",
+    "mypy>=1.11.1",
+]
+
+[tool.ruff]
+line-length = 99
+indent-width = 4
+target-version = "py311"
+extend-exclude = ["app/tests", "app/alembic"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D100", "D107", "ANN101", "TRY002", "TRY003", "EM101", "G004", "RUF", "D104", "D203", "D213", "PGH003", "PLR0913", "EM102", "INP001", "D401", "FIX002", "TD"]
+fixable = ["ALL"]
+unfixable = ["B"]
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = ["E402", "F811", "ARG001", "D103", "S101", "PLR2004", "F401", "PLR0913"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["id", "type"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = "pydantic.mypy"
+strict = false
+exclude = ["app/alembic"]
