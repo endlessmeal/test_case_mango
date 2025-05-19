@@ -63,7 +63,7 @@ API будет доступно по адресу: http://localhost:8080
 - `DELETE /api/v1/chats/{chat_id}/participants/{user_id}` - Удаление участника из чата
 
 ### WebSocket
-- `ws://localhost:8080/api/v1/ws/{chat_id}` - WebSocket подключение для real-time сообщений
+- `ws://localhost:8080/ws/{chat_id}?token=access_token` - WebSocket подключение для real-time сообщений
   - Отправка сообщений: `{"type": "message", "text": "Текст сообщения"}`
   - Отметка о прочтении: `{"type": "read", "message_id": "uuid"}`
 
